@@ -1,0 +1,66 @@
+<div class="page-header">
+    <div class="controls-wrapper">
+        <label style="margin:0; margin-right: 10px;">人员类型:</label>
+        <select class="dropdown-wrapper">
+            <option value="All" selected>全部人员</option>
+            <option value="Adopters">领养人</option>
+            <option value="Fosters">寄养人</option>
+        </select>
+    </div>
+    <button id="add-btn" class="add-btn"><i class="fa-solid fa-user-plus"></i> 添加人员</button>
+</div>
+
+<div class="content-card">
+    <table id="patron-table">
+        <tr class="table-header">
+            <th>编号</th>
+            <th>名</th>
+            <th>姓</th>
+            <th>电话号码</th>
+            <th>地址</th>
+        </tr>
+
+        {{#each patronData}}
+        {{> patronTableRow}}
+        {{/each}}
+    </table>
+</div>
+
+<div id="info-modal" class="hidden modal-skeleton">
+    <div class="modal-contents" style="width: 500px;">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">人员信息</h2>
+        <div class="modal-body" style="grid-template-columns: 1fr;">
+            <div id="patron-info">
+                <p class="label id">人员编号</p>
+                <p class="data id" style="background: #eee;"></p>
+
+                <div style="display: flex; gap: 15px;">
+                    <div style="flex: 1;">
+                        <label for="lname">姓 (Last Name) <span style="color:red">*</span></label>
+                        <input type="text" id="lname" name="lastname" autocomplete="off">
+                    </div>
+                    <div style="flex: 1;">
+                        <label for="fname">名 (First Name) <span style="color:red">*</span></label>
+                        <input type="text" id="fname" name="firstname" autocomplete="off">
+                    </div>
+                </div>
+
+                <label for="phone1">电话号码 <span style="color:red">*</span></label>
+                <div id="phone-input-wrapper">
+                    <input type="number" id="phone1" autocomplete="off" placeholder="XXX"> -
+                    <input type="number" id="phone2" autocomplete="off" placeholder="XXX"> -
+                    <input type="number" id="phone3" autocomplete="off" placeholder="XXXX">
+                </div>
+
+                <label for="address">地址</label>
+                <input type="text" id="address" name="address" autocomplete="off">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">关闭</button>
+            <button id="confirm-btn" class="modal-btn btn-primary">确认添加</button>
+            <button id="update-btn" class="modal-btn btn-primary">更新</button>
+            <button id="delete-btn" class="modal-btn btn-danger">删除</button>
+        </div>
+    </div>
+</div>

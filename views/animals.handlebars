@@ -1,0 +1,127 @@
+<div class="page-header">
+    <div class="controls-wrapper">
+        <label style="margin:0; margin-right: 10px;">筛选状态:</label>
+        <select id="animal-dropdown" class="dropdown-wrapper">
+            <option value="All" selected>全部状态</option>
+            <option value="Ready to adopt">待领养</option>
+            <option value="Adopted">已领养</option>
+            <option value="Fostered">寄养中</option>
+        </select>
+    </div>
+    <button id="add-animal-btn" class="add-btn"><i class="fa-solid fa-plus"></i> 添加动物档案</button>
+</div>
+
+<div class="content-card">
+    <table id="animal-table">
+        <tr class="table-header">
+            <th>编号</th>
+            <th>物种</th>
+            <th>品种</th>
+            <th>昵称</th>
+            <th>年龄</th>
+            <th>性别</th>
+            <th class="hidden">图片</th>
+        </tr>
+
+        {{#each animalData}}
+        {{> animalTableRow}}
+        {{/each}}
+    </table>
+</div>
+
+<div id="info-modal" class="hidden modal-skeleton">
+    <div class="modal-contents">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">动物详情</h2>
+        <div class="modal-body">
+            <div id="animal-img" class="animal-img-wrapper">
+                <img class="animal-modal-img" src="" alt="动物照片">
+            </div>
+
+            <div>
+                <p class="label id">动物编号</p>
+                <p class="data id"></p>
+
+                <p class="label name">昵称</p>
+                <p class="data name"></p>
+
+                <p class="label species">物种</p>
+                <p class="data species"></p>
+
+                <p class="label breed">品种</p>
+                <p class="data breed"></p>
+            </div>
+
+            <div>
+                <p class="label age">年龄</p>
+                <p class="data age"></p>
+
+                <p class="label gender">性别</p>
+                <p class="data gender"></p>
+
+                <p class="label adoptable">是否可领养</p>
+                <select id="adoptable-dropdown" class="data adoptable dropdown-wrapper" style="width:100%">
+                    <option value="Yes" selected>是</option>
+                    <option value="No">否</option>
+                </select>
+
+                <label for="restrictions">领养限制/备注</label>
+                <input class="data restrictions" type="text" id="restrictions" name="restrictions" autocomplete="off">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">关闭</button>
+            <button id="update-animal-btn" class="modal-btn btn-primary">更新信息</button>
+            <button id="delete-animal-btn" class="modal-btn btn-danger">删除档案</button>
+        </div>
+    </div>
+</div>
+
+<div id="add-animal-modal" class="hidden modal-skeleton">
+    <div class="modal-contents">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">录入新动物</h2>
+        <div class="modal-body">
+            <div id="add-animal-img" class="animal-img-wrapper"></div>
+
+            <div>
+                <label for="name">昵称 <span style="color:red">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="off" placeholder="例如：旺财">
+
+                <label>物种 <span style="color:red">*</span></label>
+                <select id="species-dropdown" class="dropdown-wrapper" style="width:100%">
+                    <option value="Canine" selected>犬类</option>
+                    <option value="Feline">猫类</option>
+                </select>
+
+                <label for="breed">品种</label>
+                <input type="text" id="breed" name="breed" autocomplete="off">
+
+                <label for="age">年龄 <span style="color:red">*</span></label>
+                <input type="text" id="age" name="age" autocomplete="off" placeholder="例如：2岁">
+            </div>
+
+            <div>
+                <label>性别</label>
+                <select id="gender-dropdown" class="dropdown-wrapper" style="width:100%">
+                    <option value="F" selected>雌性 (F)</option>
+                    <option value="M">雄性 (M)</option>
+                </select>
+
+                <label for="picURL">照片 URL</label>
+                <input type="text" id="picURL" name="picURL" autocomplete="off" placeholder="粘贴图片链接...">
+
+                <label>是否可领养</label>
+                <select id="i-adoptable-dropdown" class="dropdown-wrapper" style="width:100%">
+                    <option value="No" selected>否</option>
+                    <option value="Yes">是</option>
+                </select>
+
+                <label for="i-restrictions">备注</label>
+                <input type="text" id="i-restrictions" name="restrictions" autocomplete="off">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">取消</button>
+            <button id="confirm-animal-btn" class="modal-btn btn-primary">确认添加</button>
+        </div>
+    </div>
+</div>

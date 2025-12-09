@@ -1,0 +1,33 @@
+{
+  "name": "cs340",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test_app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-sqlite": "node sqlite-server.js",
+    "start-mysql": "node mysql-server.js",
+    "dev": "nodemon server.js",
+    "b-animals": "handlebars views/partials/animalTableRow.handlebars -f public/animalTableRow.js",
+    "b-patrons": "handlebars views/partials/patronTableRow.handlebars -f public/patronTableRow.js",
+    "b-prescriptions": "handlebars views/partials/prescriptionTableRow.handlebars -f public/prescriptionTableRow.js",
+    "b-vaccAdmin": "handlebars views/partials/vaccines_administeredTableRow.handlebars -f public/vaccines_administeredTableRow.js",
+    "b-vaccines": "handlebars views/partials/vaccineTableRow.handlebars -f public/vaccineTableRow.js",
+    "b-faa": "handlebars views/partials/fosters_and_adoptionsTableRow.handlebars -f public/fosters_and_adoptionsTableRow.js",
+    "build": "npm run b-animals && npm run b-patrons && npm run b-prescriptions && npm run b-vaccAdmin && npm run b-vaccines && npm run b-faa",
+    "prestart": "npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6",
+    "forever": "^4.0.3",
+    "handlebars": "^4.7.7",
+    "mysql2": "^3.15.3",
+    "node": "^17.7.2",
+    "nodemon": "^2.0.16",
+    "path": "^0.12.7",
+    "sqlite3": "^5.1.7"
+  }
+}

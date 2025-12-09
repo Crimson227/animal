@@ -1,0 +1,68 @@
+<div class="page-header">
+    <div class="controls-wrapper">
+        <label style="margin:0; margin-right: 10px;">适用物种:</label>
+        <select class="dropdown-wrapper">
+            <option value="All" selected>全部</option>
+            <option value="Canine">犬用</option>
+            <option value="Feline">猫用</option>
+        </select>
+    </div>
+    <button id="add-btn" class="add-btn"><i class="fa-solid fa-plus"></i> 添加疫苗</button>
+</div>
+
+<div class="content-card">
+    <table id="vaccines-table">
+        <tr class="table-header">
+            <th>疫苗名称</th>
+            <th>适用物种</th>
+            <th>可用剂量</th>
+        </tr>
+        {{#each vaccineData}}
+        {{> vaccineTableRow}}
+        {{/each}}
+    </table>
+</div>
+
+<div id="info-modal" class="hidden modal-skeleton">
+    <div class="modal-contents" style="width: 400px;">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">疫苗详情</h2>
+        <div class="modal-body" style="grid-template-columns: 1fr;">
+            <div id="vaccine-info">
+                <p class="label name">疫苗名称</p>
+                <p class="data name"></p>
+                <p class="label species">适用物种</p>
+                <p class="data species"></p>
+                <label for="update-doses">库存剂量</label>
+                <input type="number" id="update-doses" name="update-doses" autocomplete="off">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">关闭</button>
+            <button id="update-btn" class="modal-btn btn-primary">更新库存</button>
+            <button id="delete-btn" class="modal-btn btn-danger">删除</button>
+        </div>
+    </div>
+</div>
+
+<div id="add-vaccine-modal" class="hidden modal-skeleton">
+    <div class="modal-contents" style="width: 400px;">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">添加新疫苗</h2>
+        <div class="modal-body" style="grid-template-columns: 1fr;">
+            <div id="vaccine-input">
+                <label for="name">疫苗名称 <span style="color:red">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="off">
+                <p class="label species">适用物种</p>
+                <select id="species-dropdown" class="dropdown-wrapper" style="width: 100%;">
+                    <option value="Canine" selected>犬类</option>
+                    <option value="Feline">猫类</option>
+                </select>
+                <label for="doses">初始剂量 <span style="color:red">*</span></label>
+                <input type="number" id="doses" name="doses" autocomplete="off">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">取消</button>
+            <button id="confirm-btn" class="modal-btn btn-primary">确认添加</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="page-header">
+    <div class="controls-wrapper">
+        <label style="margin:0; margin-right: 10px;">筛选动物:</label>
+        <select class="dropdown-wrapper">
+            <option value="All" selected>全部</option>
+            <option value="Canine">犬类</option>
+            <option value="Feline">猫类</option>
+        </select>
+    </div>
+    <button id="add-btn" class="add-btn"><i class="fa-solid fa-plus"></i> 添加记录</button>
+</div>
+
+<div class="content-card">
+    <table id="vaccines-administered-table">
+        <tr class="table-header">
+            <th>动物名称</th>
+            <th>疫苗名称</th>
+            <th>接种日期</th>
+            <th>过期日期</th>
+        </tr>
+
+        {{#each vaccines_administeredData}}
+        {{> vaccines_administeredTableRow}}
+        {{/each}}
+    </table>
+</div>
+
+<div id="info-modal" class="hidden modal-skeleton">
+    <div class="modal-contents">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">接种记录详情</h2>
+        <div class="modal-body">
+            <div id="vaccine-info">
+                <p class="label id">动物编号</p>
+                <p class="data id" style="background:#eee; padding:10px; border-radius:5px;">0</p>
+
+                <p class="label name">选择动物</p>
+                <select id="name-dropdown" class="dropdown-wrapper" style="width:100%">
+                    {{#each animals}}
+                    <option value="{{this.animalID}}">{{this.animalName}}</option>
+                    {{/each}}
+                </select>
+
+                <p class="label vaccine">选择疫苗</p>
+                <select id="vaccine-dropdown" class="dropdown-wrapper" style="width:100%">
+                    {{#each vaccines}}
+                    <option value="{{this.vaccineID}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="date-given">接种日期</label>
+                <input type="date" id="date-given" name="date-given" autocomplete="off">
+
+                <label for="date-expires">过期日期</label>
+                <input type="date" id="date-expires" name="date-expires" autocomplete="off">
+            </div>
+            <div class="animal-img-wrapper">
+                <img class="animal-modal-img" src="" alt="动物照片">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">关闭</button>
+            <button id="confirm-btn" class="modal-btn btn-primary">确认添加</button>
+            <button id="update-btn" class="modal-btn btn-primary">更新</button>
+            <button id="delete-btn" class="modal-btn btn-danger">删除</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="page-header">
+    <div class="controls-wrapper">
+        <label style="margin:0; margin-right: 10px;">筛选动物:</label>
+        <select class="dropdown-wrapper">
+            <option value="All" selected>全部</option>
+            <option value="Canine">犬类</option>
+            <option value="Feline">猫类</option>
+        </select>
+    </div>
+    <button id="add-btn" class="add-btn"><i class="fa-solid fa-plus"></i> 开具处方</button>
+</div>
+
+<div class="content-card">
+    <table id="prescription-table">
+        <tr class="table-header">
+            <th>动物编号</th>
+            <th>动物名称</th>
+            <th>处方药名称</th>
+            <th>用药频率</th>
+            <th class="hidden">图片</th>
+        </tr>
+
+        {{#each prescriptionData}}
+        {{> prescriptionTableRow}}
+        {{/each}}
+    </table>
+</div>
+
+<div id="info-modal" class="hidden modal-skeleton">
+    <div class="modal-contents">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">处方详情</h2>
+        <div class="modal-body">
+            <div id="prescription-info">
+                <p class="label id">动物编号</p>
+                <p class="data id"></p>
+                <p class="label name">动物名称</p>
+                <p class="data name"></p>
+                <p class="label prescription">处方药</p>
+                <p class="data prescription"></p>
+                <p class="label frequency">用药频率</p>
+                <p class="data breed"></p>
+            </div>
+            <div class="animal-img-wrapper animal-img-adoption-wrapper">
+                <img class="animal-modal-img" src="" alt="动物照片">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">关闭</button>
+            <button id="delete-btn" class="modal-btn btn-danger">删除记录</button>
+        </div>
+    </div>
+</div>
+
+<div id="add-prescription-modal" class="hidden modal-skeleton">
+    <div class="modal-contents">
+        <h2 style="margin-bottom: 20px; color: var(--primary-color);">新增处方</h2>
+        <div class="modal-body">
+            <div id="prescription-input">
+                <p class="label id">动物编号</p>
+                <p class="data id" style="background:#eee; padding: 10px; border-radius: 5px;">0</p>
+
+                <p class="label name">选择动物</p>
+                <select id="name-dropdown" class="dropdown-wrapper" style="width:100%">
+                    {{#each animals}}
+                    <option value="{{this.animalID}}">{{this.animalName}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="prescription">处方药名称 <span style="color:red">*</span></label>
+                <input type="text" id="prescription" name="prescription" autocomplete="off">
+
+                <label for="frequency">用药频率 <span style="color:red">*</span></label>
+                <input type="text" id="frequency" name="frequency" autocomplete="off" placeholder="例如：每日一次">
+            </div>
+            <div class="animal-img-wrapper">
+                <img class="animal-modal-img" src="" alt="动物照片">
+            </div>
+        </div>
+        <div class="modal-btn-wrapper">
+            <button class="close-modal-btn modal-btn btn-secondary">取消</button>
+            <button id="confirm-btn" class="modal-btn btn-primary">确认添加</button>
+        </div>
+    </div>
+</div>

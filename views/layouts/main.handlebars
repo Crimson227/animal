@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流浪动物爱心管理系统</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.runtime.js"
+        integrity="sha512-0bRnmqp8jww8h5q9khSJSMF7kUFVuzAiVpbwCr1+kot0yAwtVukdBQGznIvytgpFzy6wEgFbjbNSO2xcSBHTWA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/index.js" defer></script>
+    {{#if anotherJS}}
+    <script src={{jsFile}} defer></script>
+    <script src={{tableJsFile}} defer></script>
+    {{/if}}
+</head>
+
+<body>
+    <nav id="navbar">
+        <div id="logo-wrapper">
+            <div id="logo-container">
+                <img id="logo" src="/imgs/shelter-logo.png" alt="logo" />
+            </div>
+            <div id="brand-text">
+                <span class="brand-title">流浪动物</span>
+                <span class="brand-subtitle">管理系统</span>
+            </div>
+        </div>
+
+        <div id="nav-links">
+            <button id="logo-btn" class="nav-item">
+                <i class="fa-solid fa-house"></i> <span>系统首页</span>
+            </button>
+            <div class="nav-divider">数据管理</div>
+            <button id="animals-nav-btn" class="nav-item">
+                <i class="fa-solid fa-paw"></i> <span>动物档案</span>
+            </button>
+            <button id="prescriptions-nav-btn" class="nav-item">
+                <i class="fa-solid fa-file-medical"></i> <span>医疗处方</span>
+            </button>
+            <button id="vaccines-nav-btn" class="nav-item">
+                <i class="fa-solid fa-syringe"></i> <span>疫苗库存</span>
+            </button>
+            <button id="vaccines_administered-nav-btn" class="nav-item">
+                <i class="fa-solid fa-notes-medical"></i> <span>接种记录</span>
+            </button>
+            <div class="nav-divider">人员与领养</div>
+            <button id="patrons-nav-btn" class="nav-item">
+                <i class="fa-solid fa-user-group"></i> <span>爱心人士</span>
+            </button>
+            <button id="fosters_and_adoptions-nav-btn" class="nav-item">
+                <i class="fa-solid fa-heart"></i> <span>寄养与领养</span>
+            </button>
+        </div>
+    </nav>
+
+    <div id="main-container">
+        <header id="top-bar">
+            <div class="breadcrumb">
+                <i class="fa-solid fa-location-dot"></i> 当前位置：管理面板
+            </div>
+            <div class="user-profile">
+                <span class="admin-name">管理员</span>
+                <div class="avatar-circle"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </header>
+
+        <div id="page-content">
+            {{{body}}}
+
+            <footer id="main-footer">
+                <div class="footer-content">
+                    <p>&copy; 流浪动物爱心管理系统 | 江西财经大学 | 数据库系统</p>
+                    <p class="footer-quote">"用科技连接爱心，让每一个生命都被温柔以待。"</p>
+                </div>
+            </footer>
+        </div>
+
+        <div id="modal-backdrop" class="hidden"></div>
+        <div id="delete-modal-backdrop" class="hidden"></div>
+
+        <div id="delete-modal" class="hidden modal-animated">
+            <div class="delete-icon-wrapper">
+                <i class="fa-solid fa-circle-exclamation"></i>
+            </div>
+            <h3>确认删除？</h3>
+            <p>此操作将永久删除该条数据，且无法恢复。</p>
+            <div class="modal-btn-wrapper center-buttons">
+                <button id="cancel-delete" class="modal-btn btn-secondary">取消</button>
+                <button id="confirm-delete" class="modal-btn btn-danger">确认删除</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
